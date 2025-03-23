@@ -2,7 +2,6 @@
 
 import { cookies } from "next/headers";
 
-
 export async function handleLogin(userId: string, accessToken: string, refreshToken: string) {
     (await cookies()).set('session_userid', userId, {
         httpOnly: true,
