@@ -24,8 +24,8 @@ const LoginModal = () => {
 
         const response = await apiService.post('/api/auth/login/', JSON.stringify(formData))
 
-        if (response.acccess) {
-            handleLogin(response.user.pk, response.acccess, response.refresh);
+        if (response.access) {
+            handleLogin(response.user.pk, response.access, response.refresh);
             
             loginModal.close();
         

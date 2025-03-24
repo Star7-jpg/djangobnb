@@ -1,23 +1,24 @@
 'use client';
+
 import Modal from './Modal'
+
 import { useState } from "react";
 import { useRouter  } from 'next/navigation';
+import useSignupModal from '@/app/hooks/useSignupModal';
 import CustomButton from '../forms/CustomButton';
 import apiService from '@/app/services/apiService';
-import useSignupModal from '@/app/hooks/useSignupModal';
 import { handleLogin } from '@/app/lib/actions';
-
-
 
 const SignupModal = () => {
     //
     // Variables
+
     const router = useRouter();
     const signupModal = useSignupModal();
     const [email, setEmail] = useState(''); 
-    const [errors, setErrors] = useState<string[]>([]);
     const [password1, setPassword1] = useState('');   
     const [password2, setPassword2] = useState('');   
+    const [errors, setErrors] = useState<string[]>([]);
     
     //
     // Submit functionality
@@ -31,8 +32,9 @@ const SignupModal = () => {
 
         const response = await apiService.post('/api/auth/register/', JSON.stringify(formData));
 
-        if (response.acccess) {
-            handleLogin(response.user.pk, response.acccess, response.refresh);
+        if (response.access) {
+            handleLogin(response.user.pk, response.access, response.refresh);
+            
             signupModal.close();
 
             router.push('/')
